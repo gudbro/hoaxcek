@@ -24,8 +24,8 @@ def main():
     return render_template('main.html')
 
 #Receiving the input url from the user and using Web Scrapping to extract the news content
-@app.route('/cek',methods=['GET','POST'])
-def cek():
+@app.route('/predict',methods=['GET','POST'])
+def predict():
     url =request.get_data(as_text=True)[5:]
     url = urllib.parse.unquote(url)
     article = Article(str(url))
@@ -34,7 +34,7 @@ def cek():
     article.nlp()
     news = article.summary
     #Passing the news article to the model and returing whether it is Fake or Real
-    pred = model.cek([news])
+    pred = model.predict([news])
     return render_template('main.html', prediction_text='The news is "{}"'.format(pred[0]))
     
 if __name__=="__main__":

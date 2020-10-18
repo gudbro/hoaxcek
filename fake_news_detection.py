@@ -24,7 +24,7 @@ pipeline = Pipeline([('tfidf', TfidfVectorizer(stop_words='english')),
 pipeline.fit(X_train, y_train)
 
 #Predicting the label for the test data
-pred = pipeline.cek(X_test)
+pred = pipeline.predict(X_test)
 
 #Checking the performance of our model
 print(classification_report(y_test, pred))
